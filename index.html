@@ -11,63 +11,11 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="panier.html">Panier</a></li>
+            <li><a href="/?route=panier">Panier</a></li>
         </ul>
     </nav>
 </header>
-<main>
-    <h1>Orinoco boutique en ligne</h1>
-    <div class="container-items">
-        <section class="camera">
-            <h2>Caméras</h2>
-            <div class="items" id="camera__items">
-                Loading...
-            </div>
-            <script id="camera__items__template" type="x-tmpl-mustache">
-                {{#items}}
-                    <div class="item">
-                        <h3>{{name}}</h3>
-                        <img src="{{imageUrl}}" alt="{{name}}" />
-                        <p>{{description}}</p>
-                    </div>
-                {{/items}}
-            </script>
-        </section>
-
-        <section class="teddy">
-            <h2>Ours en peluche</h2>
-            <div class="items" id="teddy__items">
-                Loading...
-            </div>
-            <script id="teddy__items__template" type="x-tmpl-mustache">
-                {{#items}}
-                    <div class="item">
-                        <h3>{{name}}</h3>
-                        <img src="{{imageUrl}}" alt="{{name}}" />
-                        <p>{{description}}</p>
-                    </div>
-                {{/items}}
-            </script>
-        </section>
-
-        <section class="furniture">
-            <h2>Meubles en chêne</h2>
-            <div class="items" id="furniture__items">
-                Loading...
-            </div>
-            <script id="furniture__items__template" type="x-tmpl-mustache">
-                {{#items}}
-                    <div class="item">
-                        <h3>{{name}}</h3>
-                        <img src="{{imageUrl}}" alt="{{name}}" />
-                        <p>{{description}}</p>
-                    </div>
-                {{/items}}
-            </script>
-        </section>
-
-    </div>
-</main>
+<main id="route"></main>
 <footer>©Orinoco tous droits réservés</footer>
 <script src="./dist/polyfill.bundle.js"></script>
 <script src="./dist/app.bundle.js"></script>

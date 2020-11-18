@@ -1,2 +1,2 @@
 import "./sass/style.sass"
-import "./js/items";
+import "./js/route";

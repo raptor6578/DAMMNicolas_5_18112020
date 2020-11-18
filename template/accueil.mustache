@@ -1,0 +1,50 @@
+<h1>Orinoco boutique en ligne</h1>
+<div class="container-items">
+    <section class="camera">
+        <h2>Caméras</h2>
+        <div class="items" id="camera__items">
+            Loading...
+        </div>
+        <script id="camera__items__template" type="x-tmpl-mustache">
+                {{#items}}
+                    <div class="item">
+                        <h3>{{name}}</h3>
+                        <img src="{{imageUrl}}" alt="{{name}}" />
+                        <p>{{description}}</p>
+                    </div>
+                {{/items}}
+            </script>
+    </section>
+
+    <section class="teddy">
+        <h2>Ours en peluche</h2>
+        <div class="items" id="teddy__items">
+            Loading...
+        </div>
+        <script id="teddy__items__template" type="x-tmpl-mustache">
+                {{#items}}
+                    <div class="item">
+                        <h3>{{name}}</h3>
+                        <img src="{{imageUrl}}" alt="{{name}}" />
+                        <p>{{description}}</p>
+                    </div>
+                {{/items}}
+            </script>
+    </section>
+
+    <section class="furniture">
+        <h2>Meubles en chêne</h2>
+        <div class="items" id="furniture__items">
+            Loading...
+        </div>
+        <script id="furniture__items__template" type="x-tmpl-mustache">
+                {{#items}}
+                    <div class="item">
+                        <h3>{{name}}</h3>
+                        <img src="{{imageUrl}}" alt="{{name}}" />
+                        <p>{{description}}</p>
+                    </div>
+                {{/items}}
+            </script>
+    </section>
+</div>
