@@ -1,2 +1,20 @@
 <h1>Produit</h1>
-<div class="container-items">Hello world</div>
+<div class="container">
+    <div class="produit" id="produit"></div>
+    <script id="produit__template" type="x-tmpl-mustache">
+        {{#produit}}
+            <h2>{{name}}</h2>
+            <img alt="{{name}}" src="{{imageUrl}}" />
+            <p class="produit__description">{{description}}</p>
+            <p class="produit__options">
+                <select>
+                    {{#lenses}}
+                        <option>{{.}}</option>
+                    {{/lenses}}
+                </select>
+            </p>
+            <p class="produit__price">{{price}}€</p>
+            <button>Ajouter au panier</button>
+        {{/produit}}
+    </script>
+</div>

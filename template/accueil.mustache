@@ -1,5 +1,5 @@
 <h1>Orinoco boutique en ligne</h1>
-<div class="container-items">
+<div class="container">
     <section class="camera">
         <h2>Caméras</h2>
         <div class="items" id="camera__items">
@@ -7,11 +7,13 @@
         </div>
         <script id="camera__items__template" type="x-tmpl-mustache">
                 {{#items}}
+                    <a href="/?route=produit&categorie=camera&id={{_id}}">
                     <div class="item">
                         <h3>{{name}}</h3>
                         <img src="{{imageUrl}}" alt="{{name}}" />
                         <p>{{description}}</p>
-                    </div>
+                        <p class="item__price">{{price}}€</p>
+                    </div></a>
                 {{/items}}
             </script>
     </section>
@@ -23,11 +25,13 @@
         </div>
         <script id="teddy__items__template" type="x-tmpl-mustache">
                 {{#items}}
+                    <a href="/?route=produit&categorie=teddy&id={{_id}}">
                     <div class="item">
                         <h3>{{name}}</h3>
                         <img src="{{imageUrl}}" alt="{{name}}" />
                         <p>{{description}}</p>
-                    </div>
+                        <p class="item__price">{{price}}€</p>
+                    </div></a>
                 {{/items}}
             </script>
     </section>
@@ -39,11 +43,13 @@
         </div>
         <script id="furniture__items__template" type="x-tmpl-mustache">
                 {{#items}}
+                    <a href="/?route=produit&categorie=furniture&id={{_id}}">
                     <div class="item">
                         <h3>{{name}}</h3>
                         <img src="{{imageUrl}}" alt="{{name}}" />
                         <p>{{description}}</p>
-                    </div>
+                        <p class="item__price">{{price}}€</p>
+                    </div></a>
                 {{/items}}
             </script>
     </section>
