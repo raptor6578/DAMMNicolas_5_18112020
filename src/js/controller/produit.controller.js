@@ -1,6 +1,7 @@
 import Http from '../services/http.service';
 import Render from '../services/render.service';
 import Panier from '../services/panier.service';
+import Formatter from '../services/formatter.service';
 
 export default function ProduitController(params) {
     const initializeEventTemplate = () => {
@@ -13,7 +14,7 @@ export default function ProduitController(params) {
         Http.getCameraFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: data});
+                    Render('produit', {produit: Formatter.price(data)});
                     initializeEventTemplate();
                 })
         });
@@ -22,7 +23,7 @@ export default function ProduitController(params) {
         Http.getTeddyFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: data});
+                    Render('produit', {produit: Formatter.price(data)});
                     initializeEventTemplate();
                 })
         });
@@ -31,7 +32,7 @@ export default function ProduitController(params) {
         Http.getFurnitureFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: data});
+                    Render('produit', {produit: Formatter.price(data)});
                     initializeEventTemplate();
                 })
         });
