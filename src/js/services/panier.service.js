@@ -5,7 +5,6 @@ class Panier {
         const storage = JSON.parse(localStorage.getItem('panier'));
         storage ? this.panier = storage : this.panier = {};
         this.count();
-        console.log(this.panier)
     }
     count() {
         let produits = 0;
