@@ -11,7 +11,14 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/?route=panier">Panier</a></li>
+            <li>
+                <a href="/?route=panier">
+                    Panier <div class="panier__count" id="panier__count">(0)</div>
+                    <script id="panier__count__template" type="x-tmpl-mustache">
+                        ({{count}})
+                    </script>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

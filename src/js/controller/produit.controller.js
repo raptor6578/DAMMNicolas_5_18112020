@@ -1,12 +1,12 @@
 import Http from '../services/http.service';
 import Render from '../services/render.service';
+import Panier from '../services/panier.service';
 
 export default function ProduitController(params) {
     if (params.get('categorie') === 'camera') {
         Http.getCameraFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    console.log(data)
                     Render('produit', {produit: data});
                 })
         });
@@ -27,4 +27,8 @@ export default function ProduitController(params) {
                 })
         });
     }
+    window.addPanier = function(id) {
+        Panier.up(id);
+    };
 }
+
