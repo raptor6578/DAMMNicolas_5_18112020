@@ -7,10 +7,10 @@
             <img alt="{{name}}" src="{{imageUrl}}" />
             <p class="produit__description">{{description}}</p>
             <p class="produit__options">
-                <select>
-                    {{#lenses}}
-                        <option>{{.}}</option>
-                    {{/lenses}}
+                <select id="customization">
+                    {{#customization}}
+                        <option value="{{.}}">{{.}}</option>
+                    {{/customization}}
                 </select>
             </p>
             <p class="produit__price">{{price}}€</p>

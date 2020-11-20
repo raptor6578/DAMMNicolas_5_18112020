@@ -6,21 +6,21 @@ export default function AccueilController() {
     Http.getAllCameras().then((response) => {
         response.json()
             .then((data) => {
-                Render('camera__items', {items: Formatter.price(data, 'multiple')});
+                Render('camera__items', {items: Formatter.item(data, 'multiple')});
             })
     });
 
     Http.getAllTeddies().then((response) => {
         response.json()
             .then((data) => {
-                Render('teddy__items', {items: Formatter.price(data, 'multiple')});
+                Render('teddy__items', {items: Formatter.item(data, 'multiple')});
             })
     });
 
     Http.getAllFurniture().then((response) => {
         response.json()
             .then((data) => {
-                Render('furniture__items', {items: Formatter.price(data, 'multiple')});
+                Render('furniture__items', {items: Formatter.item(data, 'multiple')});
             })
     });
 }

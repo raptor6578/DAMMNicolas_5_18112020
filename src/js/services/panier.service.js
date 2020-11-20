@@ -9,17 +9,22 @@ class Panier {
     count() {
         let produits = 0;
         for (const key in this.panier) {
-           produits = produits + this.panier[key];
+            if (this.panier.hasOwnProperty(key)) {
+                produits = produits + this.panier[key]['count'];
+            }
         }
         Render('panier__count', {count: produits});
     }
-    up(id) {
-        this.panier[id] ? this.panier[id]++ : this.panier[id] = 1;
+    up(id, customization) {
+        this.panier[id] ? this.panier[id]['count']++ : this.panier[id] = {count: 1};
+        this.panier[id]['customization'] ? this.panier[id]['customization'].push(customization) :
+            this.panier[id]['customization'] = [ customization ];
         this.count();
         this.savePanier();
+        console.log(this.panier)
     }
     down(id) {
-        this.panier[id] = this.panier[id] > 1 ? this.panier[id]-- : delete(this.panier[id]);
+        this.panier[id]['count'] = this.panier[id]['count'] > 1 ? this.panier[id]['count']-- : delete(this.panier[id]);
         this.count();
         this.savePanier();
     }

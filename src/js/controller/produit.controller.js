@@ -7,14 +7,15 @@ export default function ProduitController(params) {
     const initializeEventTemplate = () => {
         const addProduit = document.getElementById('produit__boutton');
         addProduit.addEventListener('click', event => {
-            Panier.up(event.target['id']);
+            const customization = document.getElementById('customization');
+            Panier.up(event.target['value'], customization.value);
         });
     };
     if (params.get('categorie') === 'camera') {
         Http.getCameraFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: Formatter.price(data)});
+                    Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })
         });
@@ -23,7 +24,7 @@ export default function ProduitController(params) {
         Http.getTeddyFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: Formatter.price(data)});
+                    Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })
         });
@@ -32,7 +33,7 @@ export default function ProduitController(params) {
         Http.getFurnitureFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
-                    Render('produit', {produit: Formatter.price(data)});
+                    Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })
         });
