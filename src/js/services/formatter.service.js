@@ -1,13 +1,9 @@
 class Formatter {
     item(data, arg) {
         if (arg === 'multiple') {
-            for (const id in data) {
-                if (data.hasOwnProperty(id)) {
-                    data[id]['price'] = data[id]['price'] / 100;
-                }
-            }
+            data = this.price(data, 'multiple');
         } else {
-            data['price'] = data['price'] / 100;
+            data = this.price(data);
             const customization = (data, oldname) => {
                 if (data[oldname]) {
                     data['customization'] = data[oldname];
@@ -27,6 +23,18 @@ class Formatter {
         }
         return data;
     };
+    price(data, arg) {
+        if (arg === 'multiple') {
+            for (const id in data) {
+                if (data.hasOwnProperty(id)) {
+                    data[id]['price'] = data[id]['price'] / 100;
+                }
+            }
+        } else {
+            data['price'] = data['price'] / 100;
+        }
+        return data;
+    }
 
 }
 export default new Formatter();

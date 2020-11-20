@@ -22,10 +22,18 @@ class Panier {
         this.count();
         this.savePanier();
     }
-    down(id) {
-        this.panier[id]['count'] = this.panier[id]['count'] > 1 ? this.panier[id]['count']-- : delete(this.panier[id]);
-        this.count();
-        this.savePanier();
+    down(id, customization) {
+       if (this.panier[id]
+           && this.panier[id]['customization'].includes(customization)) {
+           const i = this.panier[id]['customization'].indexOf(customization);
+           this.panier[id]['customization'].splice(i, 1);
+           if (this.panier[id]['count'] > 1) {
+               this.panier[id]['count']--
+           } else {
+               delete (this.panier[id]);
+           }
+           this.savePanier();
+       }
     }
     remove(id) {
         if (this.panier[id]) {
