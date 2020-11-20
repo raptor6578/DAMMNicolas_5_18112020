@@ -15,13 +15,12 @@ class Panier {
         }
         Render('panier__count', {count: produits});
     }
-    up(id, customization) {
-        this.panier[id] ? this.panier[id]['count']++ : this.panier[id] = {count: 1};
+    up(id, type, customization) {
+        this.panier[id] ? this.panier[id]['count']++ : this.panier[id] = {count: 1, type};
         this.panier[id]['customization'] ? this.panier[id]['customization'].push(customization) :
             this.panier[id]['customization'] = [ customization ];
         this.count();
         this.savePanier();
-        console.log(this.panier)
     }
     down(id) {
         this.panier[id]['count'] = this.panier[id]['count'] > 1 ? this.panier[id]['count']-- : delete(this.panier[id]);
@@ -37,6 +36,9 @@ class Panier {
     }
     savePanier() {
         localStorage.setItem('panier', JSON.stringify(this.panier));
+    }
+    getPanier() {
+        return this.panier;
     }
 }
 export default new Panier();

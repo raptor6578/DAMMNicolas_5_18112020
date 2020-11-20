@@ -1,2 +1,25 @@
 <h1>Panier</h1>
-<div class="container">Hello world</div>
+<div class="container">
+    <div class="panier" id="panier"></div>
+    <script id="panier__template" type="x-tmpl-mustache">
+        {{#panier}}
+            <div class="panier__item">
+                <div class="panier__item__product">
+                    <a href="/?route=produit&categorie=camera&id={{_id}}">
+                        <p>{{name}}</p>
+                        <img alt="{{name}}" src="{{imageUrl}}" />
+                        <p>Total: {{count}}</p>
+                    </a>
+                </div>
+                <div class="panier__item__description">{{description}}</div>
+                <div class="panier__item__customization">
+                    <select id="{{_id}}" class="panier__item__customization__select">
+                        {{#customization}}<option value="{{.}}">{{.}}</option>{{/customization}}
+                    </select>
+                    <button class="panier__item__customization__delete" value="{{_id}}">Supprimer</button>
+                </div>
+                <div class="panier__item__price">{{price}}€</div>
+            </div>
+        {{/panier}}
+    </script>
+</div>

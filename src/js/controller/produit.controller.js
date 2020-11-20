@@ -7,14 +7,16 @@ export default function ProduitController(params) {
     const initializeEventTemplate = () => {
         const addProduit = document.getElementById('produit__boutton');
         addProduit.addEventListener('click', event => {
-            const customization = document.getElementById('customization');
-            Panier.up(event.target['value'], customization.value);
+            const customization = document.getElementById('produit__customization');
+            const type = document.getElementById('produit__type');
+            Panier.up(event.target['value'], type.value, customization.value);
         });
     };
     if (params.get('categorie') === 'camera') {
         Http.getCameraFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
+                    data['type'] = 'camera';
                     Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })
@@ -24,6 +26,7 @@ export default function ProduitController(params) {
         Http.getTeddyFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
+                    data['type'] = 'teddy';
                     Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })
@@ -33,6 +36,7 @@ export default function ProduitController(params) {
         Http.getFurnitureFromId(params.get('id')).then((response) => {
             response.json()
                 .then((data) => {
+                    data['type'] = 'furniture';
                     Render('produit', {produit: Formatter.item(data)});
                     initializeEventTemplate();
                 })

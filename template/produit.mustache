@@ -7,13 +7,14 @@
             <img alt="{{name}}" src="{{imageUrl}}" />
             <p class="produit__description">{{description}}</p>
             <p class="produit__options">
-                <select id="customization">
+                <select id="produit__customization">
                     {{#customization}}
                         <option value="{{.}}">{{.}}</option>
                     {{/customization}}
                 </select>
             </p>
             <p class="produit__price">{{price}}€</p>
+            <input type="hidden" id="produit__type" value="{{type}}" />
             <button id="produit__boutton" class="produit__button" value="{{_id}}">Ajouter au panier</button>
         {{/produit}}
     </script>
