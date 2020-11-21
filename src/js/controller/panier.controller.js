@@ -1,7 +1,7 @@
 import Render from '../services/render.service';
 import Panier from '../services/panier.service';
 import Http from '../services/http.service';
-import Formatter from '../services/formatter.service'
+import Formatter from '../services/formatter.service';
 
 export default function PanierController() {
     initializeTemplate();
@@ -37,8 +37,9 @@ function initializeTemplate() {
 function initializeData(id, panier, data) {
     panier[id] = Object.assign(panier[id], data);
     panier[id] = Formatter.price(panier[id]);
-    panier[id]['price'] = panier[id]['price'] * panier[id]['count'];
-    Render('panier', {panier: Object.values(panier)});
+    panier[id] = Formatter.totalPriceProduct(panier[id]);
+    const totalPriceGlobal = Formatter.totalPriceGlobal(panier);
+    Render('panier', {panier: Object.values(panier), totalPriceGlobal});
     initializeEventTemplate();
 }
 function initializeEventTemplate() {

@@ -21,12 +21,14 @@
                 <div class="panier__item__price">{{price}}€</div>
             </div>
         {{/panier}}
+        {{#totalPriceGlobal}}
+            <div class="panier__total-price">Total {{totalPriceGlobal}}€</div>
+        {{/totalPriceGlobal}}
         {{#empty}}
             <div class="panier__empty">
                 <img alt="panier vide" src="src/images/panier-vide.png" />
                 <p>Votre panier est vide!</p>
             </div>
-
         {{/empty}}
     </script>
 </div>
