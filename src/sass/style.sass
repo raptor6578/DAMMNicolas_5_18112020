@@ -74,6 +74,7 @@ main
 
 .panier
   &__item
+    margin-top: 50px
     display: flex
     justify-content: space-between
     align-items: center
@@ -104,8 +105,31 @@ main
     &__price
       font-weight: bold
   &__total-price
-    text-align: center
-    font-weight: bold
+    text-align: right
+  &__form__container
+    display: flex
+    justify-content: center
+  form
+    background-color: white
+    border-radius: 12px
+    width: 700px
+    padding: 50px 70px 50px 70px
+    margin-top: 50px
+    h2
+      margin-bottom: 50px
+    input, textarea
+      display: block
+      margin-bottom: 15px
+      width: 100%
+    input[type=text], input[type=email]
+      height: 20px
+    button
+      margin-top: 50px
+      border: none
+      background-color: green
+      color: white
+      border-radius: 5px
+      padding: 5px
   &__empty
     display: flex
     align-items: center

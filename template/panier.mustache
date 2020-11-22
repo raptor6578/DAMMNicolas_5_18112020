@@ -2,32 +2,49 @@
 <div class="container">
     <div class="panier" id="panier"></div>
     <script id="panier__template" type="x-tmpl-mustache">
-        {{#panier}}
-            <div class="panier__item">
-                <div class="panier__item__product">
-                    <a href="/?route=produit&categorie=camera&id={{_id}}">
-                        <p>{{name}}</p>
-                        <img alt="{{name}}" src="{{imageUrl}}" />
-                        <p>Total: {{count}}</p>
-                    </a>
-                </div>
-                <div class="panier__item__description">{{description}}</div>
-                <div class="panier__item__customization">
-                    <select id="{{_id}}" class="panier__item__customization__select">
-                        {{#customization}}<option value="{{.}}">{{.}}</option>{{/customization}}
-                    </select>
-                    <button class="panier__item__customization__delete" value="{{_id}}">Supprimer</button>
-                </div>
-                <div class="panier__item__price">{{price}}€</div>
-            </div>
-        {{/panier}}
-        {{#totalPriceGlobal}}
-            <div class="panier__total-price">Total {{totalPriceGlobal}}€</div>
-        {{/totalPriceGlobal}}
         {{#empty}}
             <div class="panier__empty">
                 <img alt="panier vide" src="src/images/panier-vide.png" />
                 <p>Votre panier est vide!</p>
+            </div>
+        {{/empty}}
+        {{^empty}}
+            <h2>Articles dans votre panier</h2>
+        {{#panier}}
+                <div class="panier__item">
+                    <div class="panier__item__product">
+                        <a href="/?route=produit&categorie={{type}}&id={{_id}}">
+                            <p>{{name}}</p>
+                            <img alt="{{name}}" src="{{imageUrl}}" />
+                            <p>Total: {{count}}</p>
+                        </a>
+                    </div>
+                    <div class="panier__item__description">{{description}}</div>
+                    <div class="panier__item__customization">
+                        <select id="{{_id}}" class="panier__item__customization__select">
+                            {{#customization}}<option value="{{.}}">{{.}}</option>{{/customization}}
+                        </select>
+                        <button class="panier__item__customization__delete" value="{{_id}}">Supprimer</button>
+                    </div>
+                    <div class="panier__item__price">{{price}}€</div>
+                </div>
+            {{/panier}}
+            <div class="panier__total-price">Prix total <b>{{totalPriceGlobal}}€</b></div>
+            <div class="panier__form__container">
+                <form id="panier__form">
+                    <h2>Validation de votre commande</h2>
+                    <label for="panier__form__first-name">Prenom :</label>
+                    <input type="text" id="panier__form__first-name" name="panier__form__first-name" />
+                    <label for="panier__form__last-name">Nom :</label>
+                    <input type="text" id="panier__form__last-name" name="panier__form__last-name" />
+                    <label for="panier__form__address">Adresse :</label>
+                    <textarea id="panier__form__address" name="panier__form__address"></textarea>
+                    <label for="panier__form__city">Ville :</label>
+                    <input type="text" id="panier__form__city" name="panier__form__city" />
+                    <label for="panier__form__email">email :</label>
+                    <input type="email" id="panier__form__email" name="panier__form__email" />
+                    <button type="submit" id="panier__form__submit" name="panier__form__submit">Passer commande</button>
+                </form>
             </div>
         {{/empty}}
     </script>
