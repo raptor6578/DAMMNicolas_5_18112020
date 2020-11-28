@@ -17,6 +17,21 @@ class Http {
     getFurnitureFromId(id) {
         return fetch(`${process.env.URL_FURNITURE}/${id}`);
     }
+    postCamera(form) {
+        return fetch(`${process.env.URL_CAMERA}/order`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST", body: form });
+    }
+    postTeddy(form) {
+        return fetch(`${process.env.URL_TEDDY}/order`, {method: "POST", body: form });
+    }
+    postFurniture(form) {
+        return fetch(`${process.env.URL_FURNITURE}/order`, {method: "POST", body: form });
+    }
 }
+
 
 export default new Http()

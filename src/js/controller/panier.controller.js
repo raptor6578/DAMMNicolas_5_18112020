@@ -2,6 +2,8 @@ import Render from '../services/render.service';
 import Panier from '../services/panier.service';
 import Http from '../services/http.service';
 import Formatter from '../services/formatter.service';
+import Route from '../services/route.service';
+import ConfirmationController from "../controller/confirmation.controller";
 
 export default function PanierController() {
     initializeTemplate();
@@ -60,7 +62,12 @@ function initializeEventTemplate() {
         if (errors.length > 0) {
             Render('panier__error', {errors});
         } else {
-
+            const object = {};
+            formData.forEach((value, key) => object[key] = value);
+            const json = JSON.stringify(object);
+            Http.postCamera(json)
+                .then(response => response.json().then(data => console.log(data)));
+            Route('confirmation', ConfirmationController);
         }
         event.preventDefault();
     });
