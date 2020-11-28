@@ -109,6 +109,27 @@ main
   &__form__container
     display: flex
     justify-content: center
+    align-items: center
+    flex-direction: column
+  &__error
+    display: flex
+    justify-content: space-around
+    background-color: #ffc1ba
+    width: 700px
+    border-radius: 12px
+    margin-top: 50px
+    padding: 20px 70px 20px 70px
+    &__messages
+      margin-left: 50px
+      &__message
+        display: block
+        margin-top: 5px
+    &__warning
+      display: flex
+      flex-direction: column
+      justify-content: center
+      img
+        width: 100px
   form
     background-color: white
     border-radius: 12px

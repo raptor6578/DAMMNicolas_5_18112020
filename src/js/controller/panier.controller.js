@@ -52,4 +52,16 @@ function initializeEventTemplate() {
             Panier.count();
         });
     }
+    const validatePanier = document.getElementById('panier__form__submit');
+    validatePanier.addEventListener('click', event => {
+        const form = document.getElementById('panier__form');
+        const formData = new FormData(form);
+        const errors = Panier.verifForm(formData);
+        if (errors.length > 0) {
+            Render('panier__error', {errors});
+        } else {
+
+        }
+        event.preventDefault();
+    });
 }

@@ -48,5 +48,17 @@ class Panier {
     getPanier() {
         return this.panier;
     }
+    verifForm(formData) {
+        const errors = [];
+        if (!formData.get('firstname')) errors.push('Vous devez renseigner un prénom.');
+        if (!formData.get('lastname')) errors.push('Vous devez renseigner un nom.');
+        if (!formData.get('address')) errors.push('Vous devez renseigner votre adresse.');
+        if (!formData.get('city')) errors.push('Vous devez renseigner votre ville.');
+        if (!formData.get('email')) errors.push('Vous devez renseigner votre email.');
+        return errors;
+    }
+    confirm(formData) {
+        console.log(formData.entries());
+    }
 }
 export default new Panier();

@@ -30,22 +30,32 @@
                 </div>
             {{/panier}}
             <div class="panier__total-price">Prix total <b>{{totalPriceGlobal}}€</b></div>
-            <div class="panier__form__container">
-                <form id="panier__form">
+            <div class="panier__form__container" id="panier__form__container">
+                <div id="panier__error"></div>
+                <form id="panier__form" name="panier_form">
                     <h2>Validation de votre commande</h2>
                     <label for="panier__form__first-name">Prenom :</label>
-                    <input type="text" id="panier__form__first-name" name="panier__form__first-name" />
+                    <input type="text" id="panier__form__first-name" name="firstname" />
                     <label for="panier__form__last-name">Nom :</label>
-                    <input type="text" id="panier__form__last-name" name="panier__form__last-name" />
+                    <input type="text" id="panier__form__last-name" name="lastname" />
                     <label for="panier__form__address">Adresse :</label>
-                    <textarea id="panier__form__address" name="panier__form__address"></textarea>
+                    <textarea id="panier__form__address" name="address"></textarea>
                     <label for="panier__form__city">Ville :</label>
-                    <input type="text" id="panier__form__city" name="panier__form__city" />
+                    <input type="text" id="panier__form__city" name="city" />
                     <label for="panier__form__email">email :</label>
-                    <input type="email" id="panier__form__email" name="panier__form__email" />
-                    <button type="submit" id="panier__form__submit" name="panier__form__submit">Passer commande</button>
+                    <input type="email" id="panier__form__email" name="email" />
+                    <button type="submit" id="panier__form__submit" name="submit">Passer commande</button>
                 </form>
             </div>
         {{/empty}}
+    </script>
+    <script id="panier__error__template" type="x-tmpl-mustache">
+        <div class="panier__error">
+            <div class="panier__error__warning"><img alt="attention" src="src/images/attention.png" /></div>
+            <div class="panier__error__messages">
+                <h2>Le formulaire contient des erreurs:</h2><br />
+                {{#errors}}<span class="panier__error__messages__message">- {{.}}</span>{{/errors}}
+            </div>
+        </div>
     </script>
 </div>
