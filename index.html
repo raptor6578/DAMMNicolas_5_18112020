@@ -12,9 +12,9 @@
         <ul>
             <li><a href="/">Accueil</a></li>
             <li>
-                <a href="/?route=panier">
-                    Panier <div class="panier__count" id="panier__count">(0)</div>
-                    <script id="panier__count__template" type="x-tmpl-mustache">
+                <a href="/?route=basket">
+                    Panier <div class="basket__count" id="basket__count">(0)</div>
+                    <script id="basket__count__template" type="x-tmpl-mustache">
                         ({{count}})
                     </script>
                 </a>
@@ -22,6 +22,7 @@
         </ul>
     </nav>
 </header>
+<!-- balise utilisée pour le routage des templates Mustache.JS -->
 <main id="route"></main>
 <footer>©Orinoco tous droits réservés</footer>
 <script src="./dist/polyfill.bundle.js"></script>

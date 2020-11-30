@@ -1,5 +1,13 @@
-//sass
+/**
+ * Point d'entrée du site
+ * les scripts doivent être chargés ici.
+ *
+ * SASS
+ */
 import "./sass/style.sass";
 
-//js
+/**
+ * JavaScript
+ */
 import "./js/route";
+import "./js/main";

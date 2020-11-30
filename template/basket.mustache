@@ -1,0 +1,62 @@
+<h1>Panier</h1>
+<div class="container">
+    <div class="basket" id="basket"></div>
+    <script id="basket__template" type="x-tmpl-mustache">
+        {{#empty}}
+            <div class="basket__empty">
+                <img alt="basket vide" src="src/images/panier-vide.png" />
+                <p>Votre panier est vide!</p>
+            </div>
+        {{/empty}}
+        {{^empty}}
+            <h2>Articles dans votre panier</h2>
+        {{#products}}
+                <div class="basket__item">
+                    <div class="basket__item__product">
+                        <a href="/?route=product&shop={{shop}}&id={{productData._id}}">
+                            <p>{{productData.name}}</p>
+                            <img alt="{{productData.name}}" src="{{productData.imageUrl}}" />
+                            <p>Total: {{totalArticles}}</p>
+                        </a>
+                    </div>
+                    <div class="basket__item__description">{{productData.description}}</div>
+                    <div class="basket__item__customization">
+                        <select id="select__{{productData._id}}" class="basket__item__customization__select">
+                            {{#customization}}<option value="{{.}}">{{.}}</option>{{/customization}}
+                        </select>
+                        <input type="hidden" id="shop__{{productData._id}}" value="{{shop}}" />
+                        <button class="basket__item__customization__delete" value="{{productData._id}}">Supprimer</button>
+                    </div>
+                    <div class="basket__item__price">{{totalPrice}}€</div>
+                </div>
+            {{/products}}
+            <div class="basket__total-price">Prix total <b>{{totalPrice}}€</b></div>
+            <div class="basket__form__container" id="basket__form__container">
+                <div id="basket__error"></div>
+                <form id="basket__form" name="basket_form">
+                    <h2>Validation de votre commande</h2>
+                    <label for="basket__form__first-name">Prenom :</label>
+                    <input type="text" id="basket__form__first-name" name="firstName" />
+                    <label for="basket__form__last-name">Nom :</label>
+                    <input type="text" id="basket__form__last-name" name="lastName" />
+                    <label for="basket__form__address">Adresse :</label>
+                    <textarea id="basket__form__address" name="address"></textarea>
+                    <label for="basket__form__city">Ville :</label>
+                    <input type="text" id="basket__form__city" name="city" />
+                    <label for="basket__form__email">email :</label>
+                    <input type="email" id="basket__form__email" name="email" />
+                    <button type="submit" id="basket__form__submit" name="submit">Passer commande</button>
+                </form>
+            </div>
+        {{/empty}}
+    </script>
+    <script id="basket__error__template" type="x-tmpl-mustache">
+        <div class="basket__error">
+            <div class="basket__error__warning"><img alt="attention" src="src/images/attention.png" /></div>
+            <div class="basket__error__messages">
+                <h2>Le formulaire contient des erreurs:</h2><br />
+                {{#errors}}<span class="basket__error__messages__message">- {{.}}</span>{{/errors}}
+            </div>
+        </div>
+    </script>
+</div>

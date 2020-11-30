@@ -1,0 +1,20 @@
+<h1>Produit</h1>
+<div class="container">
+    <div class="product" id="product"></div>
+    <script id="product__template" type="x-tmpl-mustache">
+        {{#productData}}
+            <h2>{{name}}</h2>
+            <img alt="{{name}}" src="{{imageUrl}}" />
+            <p class="product__description">{{description}}</p>
+            <p class="product__options">
+                <select id="product__customization">
+                    {{#customization}}
+                        <option value="{{.}}">{{.}}</option>
+                    {{/customization}}
+                </select>
+            </p>
+            <p class="product__price">{{price}}€</p>
+            <button id="product__button" class="product__button" value="{{shop}}">Ajouter au panier</button>
+        {{/productData}}
+    </script>
+</div>
