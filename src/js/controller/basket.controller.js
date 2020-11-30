@@ -3,20 +3,26 @@ import Basket from '../services/basket.service';
 
 export default function BasketController() {
     const products = Basket.getAllProducts();
-    const totalPrice = Basket.getTotalPrice();
-    Render('basket', {products, totalPrice});
-    initializeEvent();
+    if (products.length > 0) {
+        const totalPrice = Basket.getTotalPrice();
+        Render('basket', {products, totalPrice});
+        initializeEvent();
+    } else {
+        const empty = true;
+        Render('basket', {empty})
+    }
 }
 function initializeEvent() {
     const deleteProduct = document.getElementsByClassName('basket__item__customization__delete');
-    for (let i = 0; i < deleteProduct.length; i++) {
-        deleteProduct[i].addEventListener('click', event => {
+    for (const product of deleteProduct) {
+        product.addEventListener('click', event => {
             const id = event.target['value'];
             const selectCustomization = document.getElementById('select__'+id);
-            const valueCustomization = selectCustomization['value'];
+            const customization = selectCustomization['value'];
             const hiddenShop = document.getElementById('shop__'+id);
-            const valueShop = hiddenShop['value'];
-            console.log(id+' '+valueCustomization+ ' '+valueShop);
+            const shop = hiddenShop['value'];
+            Basket.deleteProduct(id, customization, shop);
+            BasketController();
         });
     }
     const validatePanier = document.getElementById('basket__form__submit');

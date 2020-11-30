@@ -1,5 +1,6 @@
 import BasketModel from '../models/basket.model';
 import ProductModel from '../models/product.model';
+import Render from "./render.service";
 
 class Basket {
     constructor() {
@@ -7,6 +8,9 @@ class Basket {
         this.basket = new BasketModel(storage);
         this.countTotalArticles();
 
+    }
+    saveBasket() {
+        localStorage.setItem('basket', JSON.stringify(this.basket));
     }
     setProduct(productData, customization, shop) {
        if (this.basket[shop][productData._id]) {
@@ -27,22 +31,37 @@ class Basket {
        this.countTotalArticles();
        this.saveBasket();
    }
+   deleteProduct(id, customization, shop) {
+        if (this.basket[shop][id]
+            && this.basket[shop][id].customization.includes(customization)) {
+            const index = this.basket[shop][id].customization.indexOf(customization);
+            this.basket[shop][id].customization.splice(index, 1);
+            this.basket.totalArticles--;
+            this.basket.totalPrice -= this.basket[shop][id].productData.price;
+            if (this.basket[shop][id].totalArticles > 1) {
+                this.basket[shop][id].totalArticles--;
+                this.basket[shop][id].totalPrice -= this.basket[shop][id].productData.price;
+            } else {
+                delete this.basket[shop][id];
+            }
+            this.countTotalArticles();
+            this.saveBasket();
+        } else {
+            return false;
+        }
+   }
    countTotalArticles() {
-        return this.basket.totalArticles;
+       Render('basket__count', {count: this.basket.totalArticles});
    }
    getAllProducts() {
-        let products = Object.assign(this.basket.camera, this.basket.teddy);
-        products = Object.assign(products, this.basket.furniture);
+        let products = {};
+        Object.assign(products, this.basket.camera);
+        Object.assign(products, this.basket.teddy);
+        Object.assign(products, this.basket.furniture);
         return Object.values(products);
-   }
-   getAllProductsByShop(shop) {
-        if (shop) return Object.values(this.basket[shop]);
    }
    getTotalPrice() {
         return this.basket.totalPrice;
-   }
-   saveBasket() {
-       localStorage.setItem('basket', JSON.stringify(this.basket));
    }
    verifForm(formData) {
         const errors = [];

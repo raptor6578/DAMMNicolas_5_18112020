@@ -10,4 +10,3 @@ import "./sass/style.sass";
  * JavaScript
  */
 import "./js/route";
-import "./js/main";
