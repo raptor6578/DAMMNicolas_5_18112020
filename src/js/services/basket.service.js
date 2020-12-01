@@ -60,6 +60,16 @@ class Basket {
         Object.assign(products, this.basket.furniture);
         return Object.values(products);
    }
+   getAllIdByShop(shop) {
+        const id = [];
+        for (const product of Object.values(this.basket[shop])) {
+            const totalArticles = product.totalArticles;
+            for (let i=0;i<totalArticles;i++) {
+                id.push(product.productData._id);
+            }
+        }
+        return id;
+   }
    getTotalPrice() {
         return this.basket.totalPrice;
    }
@@ -70,7 +80,11 @@ class Basket {
         if (!formData.get('address')) errors.push('Vous devez renseigner votre adresse.');
         if (!formData.get('city')) errors.push('Vous devez renseigner votre ville.');
         if (!formData.get('email')) errors.push('Vous devez renseigner votre email.');
-        return errors;
+        if (errors.length > 0) {
+            return errors;
+        } else {
+            return false;
+        }
    }
 }
 export default new Basket();
