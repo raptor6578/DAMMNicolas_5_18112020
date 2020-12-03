@@ -3,8 +3,7 @@ import Confirmation from '../services/confirmation.service';
 
 export default function PaymentController() {
     if (Confirmation.confirmation.status) {
-        console.log(Confirmation.confirmation)
-        Render('payment', {});
+        Render('payment', {confirmation: Confirmation.confirmation});
         const paymentOrderedCancel = document.getElementById('payment__ordered__cancel');
         paymentOrderedCancel.addEventListener('click', () => {
             Confirmation.orderCancel();

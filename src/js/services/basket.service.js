@@ -77,6 +77,19 @@ class Basket {
             return false;
         }
    }
+   getLastPicturesByShop(shop) {
+        const lastPictures = [];
+        let count = 0;
+        for (const id of Object.keys(this.basket[shop])) {
+            count++;
+            lastPictures.push({
+                imageUrl: this.basket[shop][id].productData.imageUrl,
+                count
+            });
+            if (count === 4) break;
+        }
+        return lastPictures;
+   }
    getTotalPrice() {
         return this.basket.totalPrice;
    }

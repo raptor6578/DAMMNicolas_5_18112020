@@ -26,7 +26,8 @@ class Confirmation {
     }
     setConfirmation(contact, products, orderId, shop, totalArticles, totalPrice) {
         if (contact && products && orderId && shop) {
-            this.confirmation[shop] = { contact, products, orderId, shop, totalArticles, totalPrice };
+            const lastPictures = Basket.getLastPicturesByShop(shop);
+            this.confirmation[shop] = { contact, products, orderId, shop, lastPictures, totalArticles, totalPrice };
             this.saveConfirmation();
         }
     }
