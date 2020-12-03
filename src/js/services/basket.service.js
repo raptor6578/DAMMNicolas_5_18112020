@@ -61,17 +61,31 @@ class Basket {
         return Object.values(products);
    }
    getAllIdByShop(shop) {
-        const id = [];
-        for (const product of Object.values(this.basket[shop])) {
-            const totalArticles = product.totalArticles;
-            for (let i=0;i<totalArticles;i++) {
-                id.push(product.productData._id);
+        if (Object.keys(this.basket[shop]).length > 0) {
+            const id = [];
+            for (const product of Object.values(this.basket[shop])) {
+                const totalArticles = product.totalArticles;
+                for (let i = 0; i < totalArticles; i++) {
+                    id.push(product.productData._id);
+                }
             }
+            return id;
+        } else {
+            return false;
         }
-        return id;
    }
    getTotalPrice() {
         return this.basket.totalPrice;
+   }
+   getTotalPriceByProduct(shop, id) {
+        return this.basket[shop][id].totalPrice;
+   }
+   getTotalPriceByShop(shop) {
+        let totalPrice = 0;
+        for (const id of Object.keys(this.basket[shop])) {
+            totalPrice += this.basket[shop][id].totalPrice;
+        }
+        return totalPrice;
    }
    verifForm(formData) {
         const errors = [];

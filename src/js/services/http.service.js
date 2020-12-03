@@ -26,10 +26,20 @@ class Http {
             method: "POST", body: form });
     }
     postTeddy(form) {
-        return fetch(`${process.env.URL_TEDDY}/order`, {method: "POST", body: form });
+        return fetch(`${process.env.URL_TEDDY}/order`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST", body: form });
     }
     postFurniture(form) {
-        return fetch(`${process.env.URL_FURNITURE}/order`, {method: "POST", body: form });
+        return fetch(`${process.env.URL_FURNITURE}/order`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST", body: form });
     }
 }
 

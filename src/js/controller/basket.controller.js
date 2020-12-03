@@ -1,8 +1,12 @@
 import Render from '../services/render.service';
 import Basket from '../services/basket.service';
 import Http from '../services/http.service';
+import Confirmation from '../services/confirmation.service';
 
 export default function BasketController() {
+    if (Confirmation.confirmation.status) {
+        window.location.href = "/?route=payment";
+    }
     const products = Basket.getAllProducts();
     if (products.length > 0) {
         const totalPrice = Basket.getTotalPrice();
@@ -37,11 +41,68 @@ function initializeEventTemplate() {
             const object = {};
             object.contact = {};
             formData.forEach((value, key) => object.contact[key] = value);
-            object.products = Basket.getAllIdByShop('camera');
-            const json = JSON.stringify(object);
-            Http.postCamera(json)
-                .then(response => response.json()
-                    .then(data => console.log(data)));
+            const productsCamera = Basket.getAllIdByShop('camera');
+            const productsTeddy = Basket.getAllIdByShop('teddy');
+            const productsFurniture = Basket.getAllIdByShop('furniture');
+            let countPost = 0;
+            let totalShop = 0;
+            const postShop = new Promise((resolve, reject) => {
+                if (productsCamera) {
+                    totalShop++;
+                    object.products = productsCamera;
+                    const json = JSON.stringify(object);
+                    Http.postCamera(json)
+                        .then(response => response.json()
+                            .then(data => {
+                                Confirmation.setConfirmation(data.contact,
+                                    data.products,
+                                    data.orderId,
+                                    'camera');
+                                countPost++;
+                                if (countPost === totalShop) {
+                                    resolve();
+                                }
+                            }));
+                }
+                if (productsTeddy) {
+                    totalShop++;
+                    object.products = productsTeddy;
+                    const json = JSON.stringify(object);
+                    Http.postTeddy(json)
+                        .then(response => response.json()
+                            .then(data => {
+                                Confirmation.setConfirmation(data.contact,
+                                    data.products,
+                                    data.orderId,
+                                    'teddy');
+                                countPost++;
+                                if (countPost === totalShop) {
+                                    resolve();
+                                }
+                            }));
+                }
+                if (productsFurniture) {
+                    totalShop++;
+                    object.products = productsFurniture;
+                    const json = JSON.stringify(object);
+                    Http.postFurniture(json)
+                        .then(response => response.json()
+                            .then(data => {
+                                Confirmation.setConfirmation(data.contact,
+                                    data.products,
+                                    data.orderId,
+                                    'furniture');
+                                countPost++;
+                                if (countPost === totalShop) {
+                                    resolve();
+                                }
+                            }));
+                }
+            });
+            postShop.then(() => {
+                Confirmation.orderCompleted(true);
+                window.location.href = "/?route=payment";
+            })
         }
         event.preventDefault();
     });
