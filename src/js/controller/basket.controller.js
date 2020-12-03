@@ -57,7 +57,9 @@ function initializeEventTemplate() {
                                 Confirmation.setConfirmation(data.contact,
                                     data.products,
                                     data.orderId,
-                                    'camera');
+                                    'camera',
+                                    Basket.getTotalArticlesByShop('camera'),
+                                    Basket.getTotalPriceByShop('camera'));
                                 countPost++;
                                 if (countPost === totalShop) {
                                     resolve();
@@ -74,7 +76,9 @@ function initializeEventTemplate() {
                                 Confirmation.setConfirmation(data.contact,
                                     data.products,
                                     data.orderId,
-                                    'teddy');
+                                    'teddy',
+                                    Basket.getTotalArticlesByShop('teddy'),
+                                    Basket.getTotalPriceByShop('teddy'));
                                 countPost++;
                                 if (countPost === totalShop) {
                                     resolve();
@@ -91,7 +95,9 @@ function initializeEventTemplate() {
                                 Confirmation.setConfirmation(data.contact,
                                     data.products,
                                     data.orderId,
-                                    'furniture');
+                                    'furniture',
+                                    Basket.getTotalArticlesByShop('furniture'),
+                                    Basket.getTotalPriceByShop('furniture'));
                                 countPost++;
                                 if (countPost === totalShop) {
                                     resolve();

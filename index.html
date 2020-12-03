@@ -11,13 +11,16 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li>
+            <li id="basket__link">
                 <a href="/?route=basket">
                     Panier <div class="basket__count" id="basket__count">(0)</div>
                     <script id="basket__count__template" type="x-tmpl-mustache">
                         ({{count}})
                     </script>
                 </a>
+            </li>
+            <li id="payment__link">
+                <a href="/?route=payment">Votre commande</a>
             </li>
         </ul>
     </nav>

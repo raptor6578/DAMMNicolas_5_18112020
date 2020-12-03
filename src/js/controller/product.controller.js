@@ -1,12 +1,16 @@
 import Http from '../services/http.service';
 import Render from '../services/render.service';
 import Basket from '../services/basket.service';
+import Confirmation from '../services/confirmation.service';
 import ProductDataModel from "../models/productData.model";
 
 export default function ProductController(params) {
     let productData;
     const initializeEventTemplate = () => {
         const addProduct = document.getElementById('product__button');
+        if (Confirmation.confirmation.status) {
+            addProduct.disabled = true;
+        }
         addProduct.addEventListener('click', event => {
             const selectCustomization = document.getElementById('product__customization');
             const customization = selectCustomization.value;

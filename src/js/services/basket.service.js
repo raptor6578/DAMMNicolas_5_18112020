@@ -7,10 +7,13 @@ class Basket {
         const storage = JSON.parse(localStorage.getItem('basket'));
         this.basket = new BasketModel(storage);
         this.countTotalArticles();
-
     }
     saveBasket() {
         localStorage.setItem('basket', JSON.stringify(this.basket));
+    }
+    cancelBasket() {
+        this.basket = new BasketModel({});
+        this.saveBasket();
     }
     setProduct(productData, customization, shop) {
        if (this.basket[shop][productData._id]) {
@@ -86,6 +89,13 @@ class Basket {
             totalPrice += this.basket[shop][id].totalPrice;
         }
         return totalPrice;
+   }
+   getTotalArticlesByShop(shop) {
+        let totalArticles = 0;
+        for (const id of Object.keys(this.basket[shop])) {
+            totalArticles += this.basket[shop][id].totalArticles;
+        }
+        return totalArticles;
    }
    verifForm(formData) {
         const errors = [];
