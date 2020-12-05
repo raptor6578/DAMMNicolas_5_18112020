@@ -2,7 +2,6 @@ import Route from './services/route.service';
 import HomeController from './controller/home.controller';
 import BasketController from './controller/basket.controller';
 import ProductController from "./controller/product.controller";
-import ConfirmationController from "./controller/confirmation.controller";
 import PaymentController from "./controller/payment.controller";
 
 const queryString = window.location.search;
@@ -14,9 +13,6 @@ switch (urlParams.get('route')) {
         break;
     case 'product':
         Route('product', ProductController);
-        break;
-    case 'confirmation':
-        Route('confirmation', ConfirmationController);
         break;
     case 'payment':
         Route('payment', PaymentController);
