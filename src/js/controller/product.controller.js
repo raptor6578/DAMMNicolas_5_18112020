@@ -6,11 +6,13 @@ import ProductDataModel from "../models/productData.model";
 
 export default function ProductController(params) {
     let productData;
+    // Initialisation des events
     const initializeEventTemplate = () => {
         const addProduct = document.getElementById('product__button');
         if (Confirmation.confirmation.status) {
             addProduct.disabled = true;
         }
+        // Ajout d'un produit dans le panier
         addProduct.addEventListener('click', event => {
             const selectCustomization = document.getElementById('product__customization');
             const customization = selectCustomization.value;
@@ -18,6 +20,7 @@ export default function ProductController(params) {
             Basket.setProduct(productData, customization, shop);
         });
     };
+    // Vérification de la provenance du produit pour le récupérer à partir de la boutique concernée
     switch (params.get('shop')) {
         case 'camera':
             Http.getCameraFromId(params.get('id')).then((response) => {

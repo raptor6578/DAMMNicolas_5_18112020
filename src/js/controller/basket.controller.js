@@ -4,6 +4,7 @@ import Http from '../services/http.service';
 import Confirmation from '../services/confirmation.service';
 
 export default function BasketController() {
+    // Si la commande est confirmée on redirige vers la route "payment"
     if (Confirmation.confirmation.status) {
         window.location.href = "/?route=payment";
     }
@@ -17,7 +18,9 @@ export default function BasketController() {
         Render('basket', {empty})
     }
 }
+// Initialisation des "EventListener"
 function initializeEventTemplate() {
+    //Suppression d'un produit
     const deleteProduct = document.getElementsByClassName('basket__item__customization__delete');
     for (const product of deleteProduct) {
         product.addEventListener('click', event => {
@@ -30,6 +33,7 @@ function initializeEventTemplate() {
             BasketController();
         });
     }
+    // Validation du panier
     const validateBasket = document.getElementById('basket__form__submit');
     validateBasket.addEventListener('click', event => {
         const form = document.getElementById('basket__form');
@@ -46,6 +50,7 @@ function initializeEventTemplate() {
             const productsFurniture = Basket.getAllIdByShop('furniture');
             let countPost = 0;
             let totalShop = 0;
+            // Création d'une promesse permettant de vérifier que toute les commandes ont été validées par l'API
             const postShop = new Promise((resolve, reject) => {
                 if (productsCamera) {
                     totalShop++;
@@ -105,6 +110,7 @@ function initializeEventTemplate() {
                             }));
                 }
             });
+            // Validation de la commande et redirection vers la route "payment"
             postShop.then(() => {
                 Confirmation.orderCompleted(true);
                 window.location.href = "/?route=payment";

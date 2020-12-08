@@ -8,13 +8,16 @@ class Basket {
         this.basket = new BasketModel(storage);
         this.countTotalArticles();
     }
+    // Enregistrement du panier
     saveBasket() {
         localStorage.setItem('basket', JSON.stringify(this.basket));
     }
+    // Vider le panier
     cancelBasket() {
         this.basket = new BasketModel({});
         this.saveBasket();
     }
+    // Enregistrer un produit
     setProduct(productData, customization, shop) {
        if (this.basket[shop][productData._id]) {
            this.basket[shop][productData._id].totalArticles++;
@@ -34,6 +37,7 @@ class Basket {
        this.countTotalArticles();
        this.saveBasket();
    }
+   // Supprimer un produit
    deleteProduct(id, customization, shop) {
         if (this.basket[shop][id]
             && this.basket[shop][id].customization.includes(customization)) {
@@ -53,9 +57,11 @@ class Basket {
             return false;
         }
    }
+   // Afficher le nombre de produits dans le panier à côté du bouton "Panier"
    countTotalArticles() {
        Render('basket__count', {count: this.basket.totalArticles});
    }
+   // Retourner tous les produits dans un tableau
    getAllProducts() {
         let products = {};
         Object.assign(products, this.basket.camera);
@@ -63,6 +69,7 @@ class Basket {
         Object.assign(products, this.basket.furniture);
         return Object.values(products);
    }
+   // Retourner tous les Id d'une boutique (dupliquer l'id si totalArticles > 1)
    getAllIdByShop(shop) {
         if (Object.keys(this.basket[shop]).length > 0) {
             const id = [];
@@ -77,6 +84,7 @@ class Basket {
             return false;
         }
    }
+   // Retourner les 4 dernières images des produits ajouté a une boutique pour la page "confirmation"
    getLastPicturesByShop(shop) {
         const lastPictures = [];
         let count = 0;
@@ -90,12 +98,14 @@ class Basket {
         }
         return lastPictures;
    }
+   // Retourner le prix total du panier
    getTotalPrice() {
         return this.basket.totalPrice;
    }
    getTotalPriceByProduct(shop, id) {
         return this.basket[shop][id].totalPrice;
    }
+   // Retourner le prix total d'une boutique
    getTotalPriceByShop(shop) {
         let totalPrice = 0;
         for (const id of Object.keys(this.basket[shop])) {
@@ -103,6 +113,7 @@ class Basket {
         }
         return totalPrice;
    }
+   // Retourner le nombre total d'article dans une boutique
    getTotalArticlesByShop(shop) {
         let totalArticles = 0;
         for (const id of Object.keys(this.basket[shop])) {
@@ -110,6 +121,7 @@ class Basket {
         }
         return totalArticles;
    }
+   // Vérifier le formulaire de confirmation
    verifForm(formData) {
         const errors = [];
         if (!formData.get('firstName')) errors.push('Vous devez renseigner un prénom.');
@@ -117,6 +129,7 @@ class Basket {
         if (!formData.get('address')) errors.push('Vous devez renseigner votre adresse.');
         if (!formData.get('city')) errors.push('Vous devez renseigner votre ville.');
         if (!formData.get('email')) errors.push('Vous devez renseigner votre email.');
+        if (!/\S+@\S+\.\S+/.test(formData.get('email'))) errors.push('Votre adresse email est invalide.');
         if (errors.length > 0) {
             return errors;
         } else {

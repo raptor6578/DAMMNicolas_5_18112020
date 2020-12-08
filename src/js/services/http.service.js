@@ -1,4 +1,5 @@
 class Http {
+    // Ces méthodes regrouppent toute les fonctionnalités de l'API
     getAllCameras() {
         return fetch(process.env.URL_CAMERA);
     }
