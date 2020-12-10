@@ -1,4 +1,6 @@
-/** Model du panier contenant les produits de chaque boutique
+/**
+ * Model du panier contenant les produits de chaque boutique
+ *
  * @param {Object} [data] - Données provenant du localStorage
  * @param {Object.<string, Product>} data.camera - Panier "camera" chaque "Product" a pour clé l'id du produit
  * @param {Object.<string, Product>} data.teddy - Panier "teddy" chaque "Product"" a pour clé l'id du produit

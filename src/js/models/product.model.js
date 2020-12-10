@@ -1,5 +1,6 @@
 /**
  * Model du produit dans le panier
+ *
  * @param {Object} data - Données permettant de manipuler le produit dans le panier
  * @param {string} data.shop - La boutique d'ou provient le produit
  * @param {number} data.totalArticles - Total d'articles du même produit

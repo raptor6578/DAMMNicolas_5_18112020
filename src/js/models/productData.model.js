@@ -1,5 +1,6 @@
 /**
  * Model des données retournées par l'API
+ *
  * @param {Object} data - objet contenant le produit retourné par l'API du serveur
  * @param {string} data._id - id du produit
  * @param {string} data.name - nom du produit
@@ -10,7 +11,6 @@
  * @param {string[]} data.colors - couleurs des ours en peluche
  * @param {string[]} data.vernis - vernis des meubles
  */
-
 class ProductData {
     constructor(data) {
         this._id = data._id;

@@ -4,11 +4,12 @@ import BasketController from './controller/basket.controller';
 import ProductController from "./controller/product.controller";
 import PaymentController from "./controller/payment.controller";
 
-// Analyse du paramètre "route" de l'URL afin de rediriger vers la page voulu
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
+/**
+ * Analyse du paramètre "route" de l'URL afin de charger la template souhaitée
+ */
 switch (urlParams.get('route')) {
     case 'basket':
         Route('basket', BasketController);
